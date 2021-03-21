@@ -21,7 +21,7 @@ const App: React.FC = () => {
     agent.Activities.list().then(response => {
       let activities: Activity[] = [];
       response.forEach(activity => {
-        activity.date = activity.date.split('T')[0];
+        activity.date = activity?.date ? new Date(activity.date) : null;
         activities.push(activity)
       })
       setActivities(response);

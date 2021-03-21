@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { Button, Label, Item, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
+import { format } from 'date-fns';
 
 interface Props {
   activities: Activity[];
@@ -24,7 +25,7 @@ const ActivityList: React.FC<Props> = ({ activities, selectActivity, deleteActiv
           <Item key={activity.id}>
             <Item.Content>
               <Item.Header as='a'>{activity.title}</Item.Header>
-              <Item.Meta>{activity.date}</Item.Meta>
+              <Item.Meta>{format(activity.date!, 'dd MMM yyyy h:mm aa')}</Item.Meta>
               <Item.Description>
                 <div>{activity.description}</div>
                 <div>{activity.city}, {activity.venue}</div>

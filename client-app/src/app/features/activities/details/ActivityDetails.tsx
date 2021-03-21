@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
 import { Activity } from '../../../models/activity';
@@ -15,7 +16,7 @@ const ActivityDetails: React.FC<Props> = ({ activity, cancelSelectActivity, open
             <Card.Content>
                 <Card.Header>{activity.title}</Card.Header>
                 <Card.Meta>
-                    <span>{activity.date}</span>
+                    <span>{format(activity.date!, 'dd MMM yyyy h:mm aa')}</span>
                 </Card.Meta>
                 <Card.Description>
                     {activity.description}
