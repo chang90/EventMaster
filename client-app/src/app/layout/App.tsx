@@ -7,6 +7,7 @@ import ActivityDashboard from '../features/activities/dashboard/ActivityDashboar
 import {v4 as uuid} from 'uuid';
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
+import { ToastContainer } from 'react-toastify';
 
 const App: React.FC = () => {
 
@@ -54,6 +55,8 @@ const App: React.FC = () => {
         setSelectedActivity(activity);
         setEditMode(false);
         setSubmitting(false);
+      }).catch((e) => {
+        setSubmitting(false);
       })
     } else {
       activity.id = uuid();
@@ -61,6 +64,8 @@ const App: React.FC = () => {
         setActivities([...activities, activity])
         setSelectedActivity(activity);
         setEditMode(false);
+        setSubmitting(false);
+      }).catch((e) => {
         setSubmitting(false);
       })
     }
@@ -75,12 +80,13 @@ const App: React.FC = () => {
     
   }
 
-  if (loading) return <LoadingComponent content='Loading app' />
+  if (loading) return <LoadingComponent content='Loading app'/>
   
   return (
     <Fragment>
       <NavBar openForm={handleFormOpen}/>
       <Container style={{ marginTop: '7em' }}>
+        <ToastContainer position='bottom-right' hideProgressBar></ToastContainer>
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
