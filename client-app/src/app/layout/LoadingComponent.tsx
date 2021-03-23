@@ -6,12 +6,10 @@ interface Props {
     content?: string;
 }
 
-const LoadingComponent :React.FC<Props> = ({inverted = true, content = 'Loading...'}) => {
+export default function LoadingComponent({inverted = true, content = 'Loading...'}: Props) {
     return (
         <Dimmer active={true} inverted={inverted}>
-          <Loader content={content} />
+            <Loader content={content} />
         </Dimmer>
     )
 }
-
-export default LoadingComponent;
