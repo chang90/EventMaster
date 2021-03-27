@@ -13,6 +13,11 @@ const sleep = (delay: number) => {
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+axios.interceptors.request.use(config => {
+    const token = store.commonStore.token;
+    if(token) config.headers.Authorization = `Bearer ${token}`
+    return config;
+})
 axios.interceptors.response.use(async response => {
     await sleep(1000);
     return response;
@@ -36,7 +41,7 @@ axios.interceptors.response.use(async response => {
             }
             break;
         case 401:
-            toast.error('unauthorised');
+            toast.error('unauthorized');
             break;
         case 404:
             history.push('/not-found');
@@ -67,7 +72,7 @@ const Activities = {
 }
 
 const Account = {
-    current: () => requests.get('/account'),
+    current: () => requests.get<User | null>('/account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user)
 }
