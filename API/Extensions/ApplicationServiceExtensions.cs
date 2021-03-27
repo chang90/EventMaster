@@ -1,3 +1,4 @@
+
 using Application.Activities;
 using Application.Core;
 using MediatR;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Application.Interfaces;
+using Application.Interfaces.Security;
 
 namespace API.Extensions
 {
@@ -31,6 +34,8 @@ namespace API.Extensions
       });
       services.AddMediatR(typeof(List.Handler).Assembly);
       services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+      services.AddScoped<IUserAccessor, UserAccessor>();
+
       return services;
     }
   }
