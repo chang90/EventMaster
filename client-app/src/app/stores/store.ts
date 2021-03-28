@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
 import ActivityStore from "./activityStore";
 import CommonStore from "./commonStore";
-import UserStore from "./userStore";
 import ModalStore from "./modalStore";
+import UserStore from "./userStore";
 
 interface Store {
     activityStore: ActivityStore;
