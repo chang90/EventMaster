@@ -13,7 +13,7 @@
 EventMaster is a .Net 5 project to collect and manage event information. It is a personal project for me to practice my .Net skills.
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](./image/screenshot.png)
 
 ## Technologies
 * React
